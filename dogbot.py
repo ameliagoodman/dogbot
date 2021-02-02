@@ -5,6 +5,10 @@ from flask import Flask, request
 app = Flask(__name__)
 
 # @app.rout('/new_dog', methods=[])
+@app.route('/', methods=['GET', 'POST'])
+def main():
+    return "Hello, dog"
+
 
 @app.route('/fetch', methods=['GET', 'POST'])
 def hello_dog():

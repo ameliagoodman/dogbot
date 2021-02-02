@@ -1,0 +1,6 @@
+friendbot.py
+maladog.py
+monday.py
+cron.log
+*env*
+.DS_Store
