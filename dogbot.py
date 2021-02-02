@@ -7,8 +7,7 @@ app = Flask(__name__)
 # @app.rout('/new_dog', methods=[])
 @app.route('/', methods=['GET', 'POST'])
 def main():
-    return "Hello, dog"
-
+    return "Hello dog"
 
 @app.route('/fetch', methods=['GET', 'POST'])
 def hello_dog():
@@ -29,34 +28,34 @@ def hello_dog():
                 "alt_text": "dog",
                 "title": {
                     "type": "plain_text",
-                    "text": "happy monday!"
+                    "text": "arf!"
                 }
             }, 
-            {
-                "type": "actions",
-                "block_id": "newdog?",
-                "elements": [
-                    {
-                        "type": "button",
-                        "text": {
-                            "type": "plain_text",
-                            "text": "good dog"
-                        },
-                        "style": "primary",
-                        "action_id": "send_dog",
-                    },
-                    {
-                        "type": "button",
-                        "text": {
-                            "type": "plain_text",
-                            "text": "grrr"
-                        },
-                        "style": "danger",
-                        "action_id": "new_dog",
-                    }
-                ]
+            # {
+            #     "type": "actions",
+            #     "block_id": "newdog?",
+            #     "elements": [
+            #         {
+            #             "type": "button",
+            #             "text": {
+            #                 "type": "plain_text",
+            #                 "text": "good dog"
+            #             },
+            #             "style": "primary",
+            #             "action_id": "send_dog",
+            #         },
+            #         {
+            #             "type": "button",
+            #             "text": {
+            #                 "type": "plain_text",
+            #                 "text": "grrr"
+            #             },
+            #             "style": "danger",
+            #             "action_id": "new_dog",
+            #         }
+            #     ]
                 
-            }
+            # }
         ]
     }
     slack_request = requests.post(SLACK_URL, json=slack_payload)

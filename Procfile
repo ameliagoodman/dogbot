@@ -1,1 +1,1 @@
-web: flask db upgrade; gunicorn dogbot:'create_app()'
+web: gunicorn dogbot:'create_app()'
