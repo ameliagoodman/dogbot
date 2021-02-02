@@ -57,7 +57,7 @@ def hello_dog():
             # }
         ]
     }
-    print(data)
+    print(data.get('channel_id'))
     slack_request = requests.post(SLACK_URL, json=slack_payload)
     return 'Hello, Dog!'
 
