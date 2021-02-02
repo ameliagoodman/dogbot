@@ -38,8 +38,9 @@ def hello_dog():
             }
         ]
     }
-
-    
-    slack_request = requests.post(SLACK_URL + data['channel_id'], json=slack_payload)
-    return "arf"
+    url = SLACK_URL + data['channel_id']
+    print(url)
+    slack_request = requests.post(url, json=slack_payload)
+    print(slack_request.status_code)
+    return slack_request.status_code
 
