@@ -4,7 +4,6 @@ import os
 from flask import Flask, request
 app = Flask(__name__)
 
-# @app.rout('/new_dog', methods=[])
 @app.route('/', methods=['GET', 'POST'])
 def main():
     return "Hello dog"

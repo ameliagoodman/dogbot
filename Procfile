@@ -1,1 +1,1 @@
-web: gunicorn dogbot:'create_app()'
+web: gunicorn dogbot:app
