@@ -9,6 +9,7 @@ app = Flask(__name__)
 @app.route('/fetch', methods=['GET', 'POST'])
 def hello_dog():
     API_KEY =  os.getenv("GIPHY")
+    SLACK_URL =  os.getenv("SLACK_URL")
     data = request.headers
     giphy_payload = {'api_key': API_KEY, 'q': 'dog', 'limit': 1, 'offset': random.randint(0, 1000), 'rating': 'g'}
     giphy_request = requests.get('http://api.giphy.com/v1/gifs/search', params=giphy_payload)
@@ -54,6 +55,6 @@ def hello_dog():
             }
         ]
     }
-    slack_request = requests.post('https://hooks.slack.com/services/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', json=slack_payload)
+    slack_request = requests.post(SLACK_URL, json=slack_payload)
     return 'Hello, Dog!'
 
