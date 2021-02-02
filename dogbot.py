@@ -41,5 +41,5 @@ def hello_dog():
     url = SLACK_URL + data['channel_id']
     print(url)
     slack_request = requests.post(url, json=slack_payload, headers={"Content-type": 'application/json'})
-    return slack_request
+    return "arf"
 
