@@ -12,7 +12,7 @@ def main():
 def hello_dog():
     API_KEY =  os.getenv("GIPHY")
     SLACK_URL =  os.getenv("SLACK_URL")
-    data = request.data
+    data = request.json
     giphy_payload = {'api_key': API_KEY, 'q': 'dog', 'limit': 1, 'offset': random.randint(0, 1000), 'rating': 'g'}
     giphy_request = requests.get('http://api.giphy.com/v1/gifs/search', params=giphy_payload)
     giphy_response = giphy_request.json()
