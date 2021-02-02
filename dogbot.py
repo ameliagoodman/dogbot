@@ -57,6 +57,7 @@ def hello_dog():
             # }
         ]
     }
+    print(data)
     slack_request = requests.post(SLACK_URL, json=slack_payload)
     return 'Hello, Dog!'
 
