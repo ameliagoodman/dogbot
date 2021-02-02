@@ -12,9 +12,8 @@ def main():
 def hello_dog():
     API_KEY =  os.getenv("GIPHY")
     SLACK_URL =  os.getenv("SLACK_URL")
-    print("DATA=====")
     data = request.form
-    print(data['channel_id'])
+    
     giphy_payload = {'api_key': API_KEY, 'q': 'dog', 'limit': 1, 'offset': random.randint(0, 1000), 'rating': 'g'}
     giphy_request = requests.get('http://api.giphy.com/v1/gifs/search', params=giphy_payload)
     giphy_response = giphy_request.json()
@@ -31,36 +30,11 @@ def hello_dog():
                     "type": "plain_text",
                     "text": "arf!"
                 }
-            }, 
-            # {
-            #     "type": "actions",
-            #     "block_id": "newdog?",
-            #     "elements": [
-            #         {
-            #             "type": "button",
-            #             "text": {
-            #                 "type": "plain_text",
-            #                 "text": "good dog"
-            #             },
-            #             "style": "primary",
-            #             "action_id": "send_dog",
-            #         },
-            #         {
-            #             "type": "button",
-            #             "text": {
-            #                 "type": "plain_text",
-            #                 "text": "grrr"
-            #             },
-            #             "style": "danger",
-            #             "action_id": "new_dog",
-            #         }
-            #     ]
-                
-            # }
+            }
         ]
     }
 
     
-    slack_request = requests.post(SLACK_URL, json=slack_payload)
-    return 'Hello, Dog!'
+    slack_request = requests.post(SLACK_URL + data['channel_id'], json=slack_payload)
+    return
 
