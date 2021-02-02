@@ -42,5 +42,5 @@ def hello_dog():
     print(url)
     slack_request = requests.post(url, json=slack_payload)
     print(slack_request.status_code)
-    return ('', slack_request.status_code)
+    return ('', 200)
 
