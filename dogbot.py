@@ -6,12 +6,15 @@ app = Flask(__name__)
 
 def get_gif():
     API_KEY =  os.getenv("GIPHY")
-    
-
     giphy_payload = {'api_key': API_KEY, 'q': 'dog', 'limit': 1, 'offset': random.randint(0, 1000), 'rating': 'g'}
     giphy_request = requests.get('http://api.giphy.com/v1/gifs/search', params=giphy_payload)
     giphy_response = giphy_request.json()
-    gif_URL = giphy_response.get('data', 'https://giphy.com/gifs/4Zo41lhzKt6iZ8xff9')[0].get('images', 'https://giphy.com/gifs/4Zo41lhzKt6iZ8xff9').get('downsized', 'https://giphy.com/gifs/4Zo41lhzKt6iZ8xff9').get('url', 'https://giphy.com/gifs/4Zo41lhzKt6iZ8xff9')
+    default_doggy = "https://media1.giphy.com/media/4Zo41lhzKt6iZ8xff9/giphy-downsized.gif?cid=5a8f66bfo4oi0rpi1ldikr8dknqdcfwlndpf7pbkvyptl1ud&rid=giphy-downsized.gif"
+    try:
+        gif_URL = giphy_response.get('data', default_doggy)[0].get('images', default_doggy).get('downsized', default_doggy).get('url', default_doggy)
+    except AttributeError:
+        gif_URL = default_doggy
+
     return gif_URL
 
 @app.route('/', methods=['GET', 'POST'])
@@ -42,4 +45,3 @@ def hello_dog():
     print(url)
     slack_request = requests.post(url, json=slack_payload, headers={"Content-type": 'application/json'})
     return ("", 200)
-
